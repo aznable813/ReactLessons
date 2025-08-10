@@ -1,0 +1,52 @@
+[
+  {
+    "word": "abandon",
+    "choices": ["提供する", "放棄する", "説明する", "維持する"],
+    "correctIndex": 1
+  },
+  {
+    "word": "ability",
+    "choices": ["能力", "提案", "財産", "規則"],
+    "correctIndex": 0
+  },
+  {
+    "word": "acquire",
+    "choices": ["支払う", "見送る", "得る", "指示する"],
+    "correctIndex": 2
+  },
+  {
+    "word": "access",
+    "choices": ["成功", "利用権", "取引", "返金"],
+    "correctIndex": 1
+  },
+  {
+    "word": "accurate",
+    "choices": ["不正確な", "正確な", "急速な", "追加の"],
+    "correctIndex": 1
+  },
+  {
+    "word": "adjust",
+    "choices": ["適応する", "拒否する", "延期する", "要求する"],
+    "correctIndex": 0
+  },
+  {
+    "word": "advantage",
+    "choices": ["欠点", "条件", "利点", "責任"],
+    "correctIndex": 2
+  },
+  {
+    "word": "analyze",
+    "choices": ["保存する", "分析する", "提供する", "減少する"],
+    "correctIndex": 1
+  },
+  {
+    "word": "applicant",
+    "choices": ["参加者", "候補者", "申込者", "面接官"],
+    "correctIndex": 2
+  },
+  {
+    "word": "appoint",
+    "choices": ["報告する", "任命する", "断る", "到着する"],
+    "correctIndex": 1
+  }
+]
