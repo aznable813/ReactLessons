@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 const ResultScreen = ({ route, navigation }) => {
-  const { correctCount, totalCount } = route.params;
+  const { correctCount, totalCount, wrongAnswers } = route.params;
   const percentage = Math.round((correctCount / totalCount) * 100);
 
   return (
@@ -26,6 +26,16 @@ const ResultScreen = ({ route, navigation }) => {
           onPress={() => navigation.popToTop()}
         />
       </View>
+      {wrongAnswers.length > 0 && (
+        <View style={styles.wrongContainer}>
+          <Text style={styles.wrongTitle}>❌ 間違えた単語一覧</Text>
+          {wrongAnswers.map((item, index) => (
+            <Text key={index} style={styles.wrongItem}>
+             ・{item.word}（正解：{item.choices[item.correctIndex]}）
+            </Text>
+          ))}
+        </View>
+      )}
     </View>
   );
 };
@@ -38,4 +48,8 @@ const styles = StyleSheet.create({
   score: { fontSize: 24, marginBottom: 10 },
   percentage: { fontSize: 20, marginBottom: 30 },
   button: { marginVertical: 10, width: '80%' },
+
+  wrongContainer: { marginTop: 30, width: '100%' },
+  wrongTitle: { fontSize: 20, fontWeight: 'bold', marginBottom: 10 },
+  wrongItem: { fontSize: 18, marginLeft: 10, marginBottom: 5 },
 });

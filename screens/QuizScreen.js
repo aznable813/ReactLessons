@@ -7,6 +7,8 @@ export default function QuizScreen({ navigation }) {
     const [selected, setSelected] = useState(null);
     const [answered, setAnswered] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
+    const [wrongAnswers, setWrongAnswers] = useState([]);
+
   
     const currentQuestion = questions[currentIndex];
     
@@ -16,6 +18,8 @@ export default function QuizScreen({ navigation }) {
   
       if (index === currentQuestion.correctIndex) {
         setCorrectCount(correctCount + 1);
+      }else{
+        setWrongAnswers(prev => [...prev, currentQuestion]);
       }
   
       // 1秒待ってから次の問題 or 結果画面へ
@@ -28,6 +32,7 @@ export default function QuizScreen({ navigation }) {
           navigation.navigate('Result', {
             correctCount: correctCount + (index === currentQuestion.correctIndex ? 1 : 0),
             totalCount: questions.length,
+            wrongAnswers: index === currentQuestion.correctIndex ? wrongAnswers : [...wrongAnswers, currentQuestion],
           });
         }
       }, 1000);
