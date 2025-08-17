@@ -12,14 +12,16 @@ export default function QuizScreen({ navigation }) {
   
     const currentQuestion = questions[currentIndex];
     
+    // handlePress ボタン押した処理
     const handlePress = (index) => {
       setSelected(index);
       setAnswered(true);
   
       if (index === currentQuestion.correctIndex) {
         setCorrectCount(correctCount + 1);
-      }else{
-        setWrongAnswers(prev => [...prev, currentQuestion]);
+      } else {
+        // ❗間違えた単語を記録する
+        setWrongAnswers([...wrongAnswers, currentQuestion]);
       }
   
       // 1秒待ってから次の問題 or 結果画面へ
@@ -31,8 +33,7 @@ export default function QuizScreen({ navigation }) {
         } else {
           navigation.navigate('Result', {
             correctCount: correctCount + (index === currentQuestion.correctIndex ? 1 : 0),
-            totalCount: questions.length,
-            wrongAnswers: index === currentQuestion.correctIndex ? wrongAnswers : [...wrongAnswers, currentQuestion],
+            totalCount: questions.length, wrongAnswers,
           });
         }
       }, 1000);

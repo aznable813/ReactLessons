@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import QuizScreen from './screens/QuizScreen';
 import ResultScreen from './screens/ResultScreen';
+import ReviewScreen from './screens/ReviewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,8 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'TOEIC単語アプリ' }} />
         <Stack.Screen name="Quiz" component={QuizScreen} options={{ title: 'クイズ' }} />
         <Stack.Screen name="Result" component={ResultScreen} options={{ title: '結果' }} />
+        <Stack.Screen name="Review" component={ReviewScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -26,14 +26,15 @@ const ResultScreen = ({ route, navigation }) => {
           onPress={() => navigation.popToTop()}
         />
       </View>
+
       {wrongAnswers.length > 0 && (
-        <View style={styles.wrongContainer}>
-          <Text style={styles.wrongTitle}>❌ 間違えた単語一覧</Text>
-          {wrongAnswers.map((item, index) => (
-            <Text key={index} style={styles.wrongItem}>
-             ・{item.word}（正解：{item.choices[item.correctIndex]}）
-            </Text>
-          ))}
+        <View style={styles.button}>
+          <Button
+            title="間違えた単語を復習"
+            onPress={() =>
+              navigation.navigate('Review', { questions: wrongAnswers })
+            }
+          />
         </View>
       )}
     </View>
