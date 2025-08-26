@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import QuizScreen from './screens/QuizScreen';
 import ResultScreen from './screens/ResultScreen';
 import ReviewScreen from './screens/ReviewScreen';
+import HistoryScreen from './screens/HistoryScreen'; 
 
 const Stack = createNativeStackNavigator();
 
