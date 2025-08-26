@@ -17,6 +17,8 @@ export default function App() {
         <Stack.Screen name="Quiz" component={QuizScreen} options={{ title: 'クイズ' }} />
         <Stack.Screen name="Result" component={ResultScreen} options={{ title: '結果' }} />
         <Stack.Screen name="Review" component={ReviewScreen} />
+        <Stack.Screen name="History" component={HistoryScreen} />
+        
 
       </Stack.Navigator>
     </NavigationContainer>

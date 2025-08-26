@@ -6,6 +6,7 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>TOEIC単語アプリ</Text>
       <Button title="学習スタート" onPress={() => navigation.navigate('Quiz')} />
+      <Button title="履歴を見る" onPress={() => navigation.navigate('History')} />
     </View>
   );
 }
