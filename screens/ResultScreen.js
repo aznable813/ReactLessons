@@ -9,24 +9,27 @@ const ResultScreen = ({ route, navigation }) => {
 
   // 🔽 履歴保存関数
   const saveHistory = async () => {
-    try {
-      const historyItem = {
-        date: new Date().toISOString(),
-        correctCount,
-        totalCount,
-        percentage,
-      };
+  try {
+    const historyItem = {
+      date: new Date().toLocaleString('ja-JP', {
+        timeZone: 'Asia/Tokyo',
+        hour12: false,
+      }),
+      correctCount,
+      totalCount,
+      percentage,
+    };
 
-      const existingData = await AsyncStorage.getItem('quizHistory');
-      const parsed = existingData ? JSON.parse(existingData) : [];
+    const existingData = await AsyncStorage.getItem('quizHistory');
+    const parsed = existingData ? JSON.parse(existingData) : [];
 
-      parsed.push(historyItem);
+    parsed.push(historyItem);
 
-      await AsyncStorage.setItem('quizHistory', JSON.stringify(parsed));
-    } catch (error) {
-      console.error('履歴保存エラー:', error);
-    }
-  };
+    await AsyncStorage.setItem('quizHistory', JSON.stringify(parsed));
+  } catch (error) {
+    console.error('履歴保存エラー:', error);
+  }};
+
 
   // 🔽 初回のみ保存
   useEffect(() => {

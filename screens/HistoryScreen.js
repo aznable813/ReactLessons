@@ -48,17 +48,20 @@ export default function HistoryScreen() {
                 Alert.alert(
                   "確認",
                   "本当に履歴をすべて削除しますか？",
-                [
-                  { text: "キャンセル", style: "cancel" },
-                  {
+                  [
+                    { text: "キャンセル", style: "cancel" },
+                    {
                     text: "削除する",
                     style: "destructive",
-                    onPress: async () => {
-                      await AsyncStorage.removeItem('quizHistory');
+                    onPress: () => {
+                      AsyncStorage.removeItem('quizHistory').then(() => {
                       setHistory([]);
+                      }).catch((error) => {
+                        console.error('削除エラー:', error);
+                      });
                     },
-                  },
-                ]
+                    },
+                  ]
                 );
               }}
             />
