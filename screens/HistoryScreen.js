@@ -1,6 +1,6 @@
 // screens/HistoryScreen.js
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Button, Alert, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HistoryScreen() {
@@ -21,6 +21,32 @@ export default function HistoryScreen() {
     loadHistory();
   }, []);
 
+  // ✅ 履歴削除の分岐処理（Webとアプリで分ける）
+  const handleDelete = async () => {
+    if (Platform.OS === 'web') {
+      const confirmed = window.confirm('本当に履歴をすべて削除しますか？');
+      if (!confirmed) return;
+      await AsyncStorage.removeItem('quizHistory');
+      setHistory([]);
+    } else {
+      Alert.alert(
+        "確認",
+        "本当に履歴をすべて削除しますか？",
+        [
+          { text: "キャンセル", style: "cancel" },
+          {
+            text: "削除する",
+            style: "destructive",
+            onPress: async () => {
+              await AsyncStorage.removeItem('quizHistory');
+              setHistory([]);
+            },
+          },
+        ]
+      );
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>クイズ履歴</Text>
@@ -29,8 +55,8 @@ export default function HistoryScreen() {
           <Text style={styles.noData}>履歴がまだありません。</Text>
         ) : (
           history
-            .slice() // コピー
-            .reverse() // 新しい順に表示
+            .slice()
+            .reverse()
             .map((item, index) => (
               <View key={index} style={styles.historyItem}>
                 <Text>日時: {item.date}</Text>
@@ -44,26 +70,7 @@ export default function HistoryScreen() {
             <Button
               title="履歴をすべて削除"
               color="#cc4444"
-              onPress={() => {
-                Alert.alert(
-                  "確認",
-                  "本当に履歴をすべて削除しますか？",
-                  [
-                    { text: "キャンセル", style: "cancel" },
-                    {
-                    text: "削除する",
-                    style: "destructive",
-                    onPress: () => {
-                      AsyncStorage.removeItem('quizHistory').then(() => {
-                      setHistory([]);
-                      }).catch((error) => {
-                        console.error('削除エラー:', error);
-                      });
-                    },
-                    },
-                  ]
-                );
-              }}
+              onPress={handleDelete}
             />
           </View>
         )}
